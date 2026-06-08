@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html>
 <head>
     <meta charset="UTF-8">
@@ -9,14 +9,90 @@
 </head>
 <body>
 
+    <header>
+        <div class="logo">Dintsenko</div>
+
+        <nav>
+        </nav>
+    </header>
+
     <div class="container">
         <h1>Coming Soon</h1>
-        <p>My new website is under construction</p>
+        <p>My new website is under construction</p> 
     </div>
+
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <button class="close-modal" id="closeModal">
+                ×
+            </button>
+
+            <h2>What should this site become?</h2>
+            <p>
+                This website started as an experiment.
+
+                I wanted to find out whether I could build a real website without being a web developer.
+
+                Now the technical part works, but I still don't know what this project should become.
+
+                Your vote can help shape its future.
+            </p>
+
+            <button id="goToPoll" class="modal-button">Help shape the project</button>
+        </div>
+    </div>
+
+    <section class="poll-section" id="poll">
+        <div class="poll-card">
+
+            <div class="poll-option" data-value="Personal Blog">
+                <div class="poll-main">
+                    <span>Personal Journal</span>
+                </div>
+                <p class="poll-description">
+                    Thoughts about life, the world, personal growth and everything I try to understand.
+                </p>
+            </div>
+
+            <div class="poll-option" data-value="AI Ivan">
+                <div class="poll-main">
+                    <span>AI Ivan</span>
+                </div>
+                <p class="poll-description">
+                    A future digital version of me, based on my texts, thoughts and learning process.
+                </p>
+            </div>
+
+            <div class="poll-option" data-value="Photography">
+                <div class="poll-main">
+                    <span>Photography</span>
+                </div>
+                <p class="poll-description">
+                    Photos, visual stories, moments, places and the way I see the world through a camera.
+                </p>
+            </div>
+
+            <div class="poll-option" data-value="Learning in Public">
+                <div class="poll-main">
+                    <span>Learning in Public</span>
+                </div>
+                <p class="poll-description">
+                    A public journey where I learn new things, make mistakes and document the process.
+                </p>
+            </div>
+
+            <div class="poll-thank-you" id="pollThankYou">
+                <h3>Thank you!</h3>
+                <p>Your vote helps shape what this site may become.</p>
+            </div>
+        </div>
+    </section>
 
     <footer>
         &copy; 2026 Dintsenko. All rights reserved.
     </footer>
+
+    <script src="script.js"></script>
 
 </body>
 </html>

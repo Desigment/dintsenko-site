@@ -1,8 +1,104 @@
-document.addEventListener("DOMContentLoaded", function() {
-    const button = document.querySelector("button");
-    if (button) {
-        button.addEventListener("click", function() {
-            alert("Кнопка работает!");
-        });
+const container = document.querySelector(".container");
+const modal = document.getElementById("modal");
+const closeModal = document.getElementById("closeModal");
+const goToPoll = document.getElementById("goToPoll");
+const poll = document.getElementById("poll");
+const options = document.querySelectorAll(".poll-option");
+const VOTE_PROTECTION = true; // vote protection is ON
+const SEND_VOTES = true; // vote sending is ON
+
+closeModal.addEventListener("click", function () {
+    modal.classList.remove("active");
+});
+
+container.addEventListener("pointerdown", function (event) {
+
+    if (event.button !== 0) {
+        return;
     }
+
+    container.classList.add("pressed");
+});
+
+container.addEventListener("pointerdown", function (event) {
+    if (event.button !== 0) {
+        return;
+    }
+
+    container.classList.add("pressed");
+});
+
+container.addEventListener("pointerup", function (event) {
+    container.classList.remove("pressed");
+
+    if (event.button !== 0) {
+        return;
+    }
+
+    modal.classList.add("active");
+});
+
+goToPoll.addEventListener("click", function () {
+    modal.classList.remove("active");
+
+    setTimeout(function () {
+        poll.scrollIntoView({ behavior: "smooth" });
+    }, 300);
+});
+
+if (VOTE_PROTECTION) {
+
+    const hasVoted = localStorage.getItem("poll-voted");
+
+    if (hasVoted) {
+        options.forEach(function (item) {
+            item.style.pointerEvents = "none";
+            item.style.opacity = "0.28";
+        });
+
+        const pollSection = document.querySelector(".poll-section");
+        pollSection.classList.add("submitted");
+
+        const thankYou = document.getElementById("pollThankYou");
+
+        if (thankYou) {
+            thankYou.innerHTML = `
+                <h3>Thank you.</h3>
+                <p>You have already participated in this poll.</p>
+            `;
+        }
+    }
+}
+
+options.forEach(function (option) {
+    option.addEventListener("click", async function () {
+        const vote = option.getAttribute("data-value");
+
+        if (SEND_VOTES) { //Sending is ON
+            await fetch("https://formspree.io/f/mzdqekre", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                },
+                body: JSON.stringify({
+                    vote: vote
+                })
+            });
+        }
+
+        if (VOTE_PROTECTION) { //Protection is ON
+            localStorage.setItem("poll-voted", "true");
+        }
+
+        options.forEach(function (item) {
+            item.classList.remove("selected");
+            item.style.pointerEvents = "none";
+        });
+
+        option.classList.add("selected");
+
+        const pollSection = document.querySelector(".poll-section");
+        pollSection.classList.add("submitted");
+    });
 });
