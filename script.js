@@ -88,7 +88,7 @@ options.forEach(function (option) {
         const vote = option.getAttribute("data-value");
 
         if (SEND_VOTES) {
-            await fetch("https://formspree.io/f/mzdqekre", {
+            await fetch("https://formspree.io/f/mvznrgpy", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
