@@ -70,11 +70,24 @@ if (VOTE_PROTECTION) {
     }
 }
 
+const isTouchDevice = window.matchMedia("(hover: none)").matches;
+
 options.forEach(function (option) {
     option.addEventListener("click", async function () {
+
+        if (isTouchDevice && !option.classList.contains("opened")) {
+
+            options.forEach(function (item) {
+                item.classList.remove("opened");
+            });
+
+            option.classList.add("opened");
+            return;
+        }
+
         const vote = option.getAttribute("data-value");
 
-        if (SEND_VOTES) { //Sending is ON
+        if (SEND_VOTES) {
             await fetch("https://formspree.io/f/mzdqekre", {
                 method: "POST",
                 headers: {
@@ -87,7 +100,7 @@ options.forEach(function (option) {
             });
         }
 
-        if (VOTE_PROTECTION) { //Protection is ON
+        if (VOTE_PROTECTION) {
             localStorage.setItem("poll-voted", "true");
         }
 

@@ -218,7 +218,16 @@ p {
         padding 0.3s ease;
 }
 
-    .poll-option:hover {
+    .poll-option:hover .poll-description,
+    .poll-option.opened .poll-description {
+        max-height: 120px;
+        margin-top: 12px;
+        opacity: 0.72;
+        transform: translateY(0);
+    }
+
+    .poll-option:hover,
+    .poll-option.opened {
         transform: translateY(-3px);
         background: rgba(255,255,255,0.13);
         border-color: rgba(255,255,255,0.38);
@@ -258,13 +267,6 @@ p {
     line-height: 1.5;
     text-align: left;
     transition: max-height 0.35s ease, opacity 0.3s ease, transform 0.3s ease, margin-top 0.3s ease;
-}
-
-.poll-option:hover .poll-description {
-    max-height: 120px;
-    margin-top: 12px;
-    opacity: 0.72;
-    transform: translateY(0);
 }
 
 .poll-option.selected {
@@ -346,6 +348,19 @@ footer {
         .modal-content p {
             font-size: 15px;
         }
+}
+
+@media (hover: none) {
+    .poll-option:hover {
+        transform: none;
+    }
+
+    .poll-option.opened {
+        transform: translateY(-3px);
+        background: rgba(255,255,255,0.13);
+        border-color: rgba(255,255,255,0.38);
+        box-shadow: 0 16px 40px rgba(0,0,0,0.28), inset 0 1px 0 rgba(255,255,255,0.2);
+    }
 }
 
 /* Лёгкое свечение вокруг карточки */
