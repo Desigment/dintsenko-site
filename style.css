@@ -275,10 +275,10 @@ p {
     box-shadow: 0 0 0 1px rgba(255,255,255,0.18), 0 20px 45px rgba(0,0,0,0.38), inset 0 1px 0 rgba(255,255,255,0.25);
 }
 
-.poll-section {
+/*.poll-section {
     width: min(620px, 90%);
     margin: 0 auto 100px auto;
-}
+}*/
 
 .poll-thank-you {
     display: none;
@@ -310,6 +310,60 @@ p {
         transform: translateY(0) scale(1);
     }
 }
+
+/*.contact-section {
+    width: min(620px, 90%);
+    margin: 0 auto 100px auto;
+}*/
+
+.contact-card {
+    padding: 50px;
+    border-radius: 32px;
+    background: linear-gradient( 145deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04) );
+    backdrop-filter: blur(25px);
+    box-shadow: 0 40px 80px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.25);
+    box-sizing: border-box;
+}
+
+.contact-form {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+    .contact-form input,
+    .contact-form textarea {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 16px 18px;
+        border: 1px solid rgba(255,255,255,0.14);
+        border-radius: 18px;
+        background: rgba(255,255,255,0.08);
+        color: white;
+        font-family: inherit;
+        font-size: 16px;
+        outline: none;
+        backdrop-filter: blur(20px);
+        transition: border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .contact-form textarea {
+        min-height: 130px;
+        resize: none;
+    }
+
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder {
+            color: rgba(255,255,255,0.45);
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: rgba(255,255,255,0.45);
+            background: rgba(255,255,255,0.13);
+            box-shadow: 0 0 0 1px rgba(255,255,255,0.12), 0 12px 30px rgba(0,0,0,0.25);
+        }
 
 footer {
     width: 100%;
@@ -348,6 +402,18 @@ footer {
         .modal-content p {
             font-size: 15px;
         }
+
+    .contact-card {
+        padding: 35px 24px;
+        border-radius: 24px;
+    }
+}
+
+.feedback-wrapper {
+    width: min(1300px, 92%);
+    display: flex;
+    gap: 30px;
+    align-items: stretch;
 }
 
 @media (hover: none) {
@@ -360,6 +426,20 @@ footer {
         background: rgba(255,255,255,0.13);
         border-color: rgba(255,255,255,0.38);
         box-shadow: 0 16px 40px rgba(0,0,0,0.28), inset 0 1px 0 rgba(255,255,255,0.2);
+    }
+}
+
+@media (max-width: 768px) {
+
+    .feedback-wrapper {
+        flex-direction: column;
+        width: 90%;
+    }
+
+    .poll-section,
+    .contact-section {
+        width: 100%;
+        max-width: none;
     }
 }
 
